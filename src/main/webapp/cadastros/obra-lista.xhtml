@@ -153,11 +153,11 @@
 
 
 
-        <p:dialog header="Insumos Selecionados" widgetVar="selecaoInsumos" height="250"
+        <p:dialog header="Obras Selecionadas" widgetVar="selecaoObras" height="250"
                   width="400" responsive="true" styleClass="box-success">
-            <p:dataList id="selecaoInsumosLista" value="#{insumoListaMB.selecaoInsumos}" var="insumo"
+            <p:dataList id="selecaoObraLista" value="#{obraListaMB.selecaoObra}" var="obra"
                         type="definition">
-                ID: #{insumo.id} - Descricao: #{insumo.descricao} - Preco: #{insumo.preco}
+                ID: #{obra.idObra} - Nome da Obra: #{obra.nomeObra} - BDI: #{obra.BDI}
             </p:dataList>
         </p:dialog>
 

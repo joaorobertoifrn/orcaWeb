@@ -25,7 +25,7 @@
 # Maven
 
 target/
-
+gitPush.bat
 
 
 #Gradle

@@ -53,7 +53,7 @@ public class UsuarioFormMB implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifrn.bean.UsuarioFormMB[ id=" + id + " ]";
+        return "br.edu.ifrn.control.UsuarioFormMB[ id=" + id + " ]";
     }
     
 }
