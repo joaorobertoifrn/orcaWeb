@@ -1,6 +1,5 @@
 package br.edu.ifrn.infra.model;
 
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,8 +56,8 @@ public class Filtro<T extends Serializable> {
         return sortOrder;
     }
 
-    public Filtro setParametros(Map<String, Object> params) {
-        this.parametros = params;
+    public Filtro setParametros(Map<String, Object> parametros) {
+        this.parametros = parametros;
         return this;
     }
 
@@ -70,8 +69,8 @@ public class Filtro<T extends Serializable> {
         return entidade;
     }
 
-    public Filtro setEntidade(T entity) {
-        this.entidade = entity;
+    public Filtro setEntidade(T entidade) {
+        this.entidade = entidade;
         return this;
     }
 

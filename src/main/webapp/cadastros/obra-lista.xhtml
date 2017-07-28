@@ -48,7 +48,7 @@
                         <p:commandButton value="Exibir selecionados" 
                                          update="@(.ui-dialog)" 
                                          styleClass="btn-info"
-                                         disabled="#{empty obraListaMB.selecaoObra or obraLista.selecaoObra.size() == 0}"
+                                         disabled="#{empty obraListaMB.selecaoObra or obraListaMB.selecaoObra.size() == 0}"
                                          oncomplete="PF('selecaoObra').show()" icon="fa fa-search"/>
                     </div>
 
@@ -100,7 +100,7 @@
                             <p:spacer height="5"/>
                             <p:commandButton id="brFind"
                                              value="Encontrar"
-                                             action="#{obraListaMB.findById(obraListaMB.id)}"
+                                             action="#{obraListaMB.encontrarId(obraListaMB.id)}"
                                              process="@form"
                                              update="@form"
                                              styleClass="btn-flat bg-black"
@@ -146,7 +146,7 @@
             <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger">
                 <p:commandButton value="Sim" type="button" styleClass="btn-primary ui-confirmdialog-yes"
                                  icon="fa fa-check"/>
-                <p:commandButton value="Nao" type="button" styleClass="btn-danger ui-confirmdialog-no"
+                <p:commandButton value="Não" type="button" styleClass="btn-danger ui-confirmdialog-no"
                                  icon="fa fa-close"/>
             </p:confirmDialog>
         </h:form>
