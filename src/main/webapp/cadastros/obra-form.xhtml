@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:adm="http://github.com/adminfaces"
+                template="#{layoutMB.layout}">
+
+    <ui:define name="title">
+        Cadastro Obra
+    </ui:define>
+
+    <ui:define name="body">
+        <f:metadata>
+            <f:viewParam name="id" 
+                         value="#{obraFormMB.id}" 
+                         converter="javax.faces.Long"/>
+            <f:viewAction action="#{obraFormMB.init()}"/> 
+            <f:event type="preRenderView" 
+                     listener="#{obraFormMB.init}"/>
+        </f:metadata>
+        <!--   
+        <adm:breadcrumb title="#{empty obraFormMB.id ? 'Nova Obra' : 'Obra '.concat(obraFormMB.id)}" link="obra-form.xhtml?id=#{obraFormMB.id}"/>
+        --> 
+        <h:form id="form" prependId="false">
+            <p:focus rendered="#{empty obraFormMB.id}"/>
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div id="main-buttons" class="hidden-sm hidden-xs">
+                        <p:commandButton value="Salvar" 
+                                         action="#{obraFormMB.salvar}" 
+                                         update="@form"
+                                         icon="fa fa-check" 
+                                         styleClass="btn-primary"/>
+                        
+                        <p:spacer width="5" rendered="#{obraFormMB.isNew()}"/>
+                        
+                        <p:commandButton value="Limpar" 
+                                         action="#{obraFormMB.limpar}" 
+                                         process="@this"
+                                         icon="fa fa-refresh" 
+                                         styleClass="btn-success"
+                                         update="@form" 
+                                         rendered="#{obraFormMB.isNew()}" 
+                                         resetValues="true"/>
+                        
+                        <p:spacer width="5" rendered="#{not obraFormMB.isNew()}"/>
+
+                        <p:commandButton value="Apagar" 
+                                         action="#{obraFormMB.remove}" 
+                                         process="@this"
+                                         rendered="#{not obraFormMB.isNew()}" 
+                                         icon="fa fa-trash"
+                                         styleClass="btn-danger">
+                            
+                            <f:setPropertyActionListener value="true" 
+                                                         target="#{facesContext.externalContext.flash.keepMessages}"/>
+                            <p:confirm header="Confirmação" message="Você tem certeza?" icon="ui-icon-danger"/>
+                        </p:commandButton>
+                        <p:spacer width="5"/>
+                        <p:commandButton value="Voltar" 
+                                         immediate="true"
+                                         action="obra-lista?faces-redirect=true"
+                                         process="@this"
+                                         icon="fa fa-close"/>
+                    </div>
+                    
+                    <p:splitButton value="Salvar" 
+                                   action="#{obraFormMB.salvar}" 
+                                   update="@form"
+                                   icon="fa fa-check"
+                                   styleClass="hidden-md hidden-lg btn-primary">
+                        <p:menuitem value="Limpar" 
+                                    action="#{obraFormMB.limpar}"
+                                    process="@this" 
+                                    update="@form" 
+                                    rendered="#{obraFormMB.isNew()}"
+                                    resetValues="true" 
+                                    icon="fa fa-refresh"/>
+                        <p:menuitem value="Delete" 
+                                    action="#{obraFormMB.remove}" 
+                                    process="@this"
+                                    rendered="#{not obraFormMB.isNew()}" 
+                                    icon="fa fa-trash"
+                                 >
+                            <p:confirm header="Confirmação" 
+                                       message="Você tem certeza?" 
+                                       icon="ui-icon-danger"/>
+                        </p:menuitem>
+                        <p:separator/>
+                        <p:menuitem value="Voltar" 
+                                    action="obra-lista?faces-redirect=true"
+                                    process="@this" 
+                                    immediate="true"
+                                    icon="fa fa-close"/>
+                    </p:splitButton>
+
+                    <p:separator/>
+
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12">
+                            <p:outputLabel for="id" 
+                                           value="ID"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText id="id" 
+                                         value="#{obraFormMB.obra.idObra}" 
+                                         size="4"
+                                         readonly="true" 
+                                         styleClass="form-control"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel value="Nome da Obra"
+                                           for="inptNomeObra"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText id="inptNomeObra" 
+                                         value="#{obraFormMB.obra.nomeObra}"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel value="BDI" 
+                                           for="inptBDI"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputNumber id="inptBDI" 
+                                         value="#{obraFormMB.obra.BDI}"/>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <p:confirmDialog global="true" 
+                             showEffect="fade" 
+                             hideEffect="fade" 
+                             styleClass="box-danger">
+                <p:commandButton value="Sim" 
+                                 type="button" 
+                                 styleClass="btn-primary ui-confirmdialog-yes"
+                                 icon="fa fa-check"/>
+                <p:commandButton value="Não" 
+                                 type="button" 
+                                 styleClass="btn-danger ui-confirmdialog-no"
+                                 icon="fa fa-close"/>
+            </p:confirmDialog>
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>
