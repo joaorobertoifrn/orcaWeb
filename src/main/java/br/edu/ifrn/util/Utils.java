@@ -34,7 +34,7 @@ public class Utils implements Serializable {
         IntStream.rangeClosed(1, 10).forEach(i -> fase.add(gerarFases(i)));
         IntStream.rangeClosed(1, 10).forEach(j -> obra.add(gerarObras(j)));
         IntStream.rangeClosed(1,  9).forEach(k -> base.add(gerarBases(k)));
-        IntStream.rangeClosed(1,  4).forEach(i -> orcamento.add(gerarOrcas(i)));
+        IntStream.rangeClosed(1,  8).forEach(i -> orcamento.add(gerarOrcas(i)));
         
     }
 
@@ -48,8 +48,8 @@ public class Utils implements Serializable {
         return new Base(i).mesAno("0"+i+"2017" ).url("http://www.caixa.gov.br/Downloads/sinapi-a-partir-jul-2009-rn/SINAPI_ref_Insumos_Composicoes_RN_062017_NaoDesonerado.zip");
     }
     private static Orcamento gerarOrcas(int i) {
-        return new Orcamento(i).descricao("Orçamento 0"+i+"/2017" ).total(i*3+(124054)).Obra(new Obra(i)).Base(new Base(i));
-        //return new Orcamento(i).descricao("Orçamento 0"+i+"/2017" );
+        return new Orcamento(i).descricao("Orçamento 0"+i+"/2017" ).total(i*3+(1240.54)).Obra(new Obra(i)).Base(new Base(i));
+        // return new Orcamento(i).descricao("Orçamento 0"+i+"/2017" );
     }
     
     public static void adicionaMensagem(String msg){

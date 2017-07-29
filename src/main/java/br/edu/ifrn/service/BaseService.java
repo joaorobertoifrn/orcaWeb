@@ -21,7 +21,7 @@ public class BaseService implements Serializable {
     @Inject
     List<Base> todasBases;
 
-    public List<Base> porNomeBase(String mesAno) {
+    public List<Base> porMesAno(String mesAno) {
         return todasBases.stream()
                 .filter(c -> c.getMesAno().equalsIgnoreCase(mesAno))
                 .collect(Collectors.toList());

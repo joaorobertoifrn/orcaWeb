@@ -82,20 +82,20 @@ public class OrcamentoService implements Serializable {
             predicates.add(idPredicate);
         }
 
-        if (filtro.temParamentro("minTotal") && filtro.temParamentro("maxTotal")) {
-            Predicate<Orcamento> minMaxOrcamentoPredicate = (Orcamento c) -> c.getIdOrcamento()
-                    >= Double.valueOf((String) filtro.getParametro("minTotal")) && c.getIdOrcamento()
-                    <= Double.valueOf((String) filtro.getParametro("maxTotal"));
-            predicates.add(minMaxOrcamentoPredicate);
-        } else if (filtro.temParamentro("minTotal")) {
-            Predicate<Orcamento> minOrcamentoPredicate = (Orcamento c) -> c.getIdOrcamento()
-                    >= Double.valueOf((String) filtro.getParametro("minTotal"));
-            predicates.add(minOrcamentoPredicate);
-        } else if (filtro.temParamentro("maxTotal")) {
-            Predicate<Orcamento> maxOrcamentoPredicate = (Orcamento c) -> c.getIdOrcamento()
-                    <= Double.valueOf((String) filtro.getParametro("maxTotal"));
-            predicates.add(maxOrcamentoPredicate);
-        }
+//        if (filtro.temParamentro("minTotal") && filtro.temParamentro("maxTotal")) {
+//            Predicate<Orcamento> minMaxOrcamentoPredicate = (Orcamento c) -> c.getIdOrcamento()
+//                    >= Double.valueOf((String) filtro.getParametro("minTotal")) && c.getIdOrcamento()
+//                    <= Double.valueOf((String) filtro.getParametro("maxTotal"));
+//            predicates.add(minMaxOrcamentoPredicate);
+//        } else if (filtro.temParamentro("minTotal")) {
+//            Predicate<Orcamento> minOrcamentoPredicate = (Orcamento c) -> c.getIdOrcamento()
+//                    >= Double.valueOf((String) filtro.getParametro("minTotal"));
+//            predicates.add(minOrcamentoPredicate);
+//        } else if (filtro.temParamentro("maxTotal")) {
+//            Predicate<Orcamento> maxOrcamentoPredicate = (Orcamento c) -> c.getIdOrcamento()
+//                    <= Double.valueOf((String) filtro.getParametro("maxTotal"));
+//            predicates.add(maxOrcamentoPredicate);
+//        }
 
         if (has(filtro.getEntidade())) {
             Orcamento filtrorEntidade = filtro.getEntidade();

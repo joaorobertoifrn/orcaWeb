@@ -49,7 +49,7 @@ public class OrcaFormMB implements Serializable {
         return orcamento;
     }
 
-    public void setOrca(Orcamento orca) {
+    public void setOrcamento(Orcamento orca) {
         this.orcamento = orca;
     }
 

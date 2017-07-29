@@ -8,7 +8,7 @@
                 template="#{layoutMB.layout}">
 
     <ui:define name="title">
-        Cadastro Orçmentos
+        Cadastro Orçamentos
     </ui:define>
 
     <ui:define name="body">
@@ -103,31 +103,31 @@
                     <p:separator/>
 
                     <div class="ui-g ui-fluid">
-                        <div class="ui-g-12">
+                        <div class="ui-g-2">
                             <p:outputLabel for="id" 
                                            value="ID"/>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="ui-g-10">
                             <p:inputText id="id" 
-                                         value="#{orcaFormMB.orcamento.idOrcamnto}" 
+                                         value="#{orcaFormMB.orcamento.idOrcamento}" 
                                          size="4"
                                          readonly="true" 
                                          styleClass="form-control"/>
                         </div>
-                        <div class="ui-g-12">
-                            <p:outputLabel value="Descricao"
+                        <div class="ui-g-2">
+                            <p:outputLabel value="Descrição"
                                            for="inptDescricao"/>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="ui-g-10">
                             <p:inputText id="inptDescricao" 
                                          value="#{orcaFormMB.orcamento.descricao}"/>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="ui-g-2">
                             <p:outputLabel value="Total" 
                                            for="inptTotal"/>
                         </div>
-                        <div class="ui-g-12">
-                            <p:inputNumber id="inpTotal" 
+                        <div class="ui-g-10">
+                            <p:inputNumber id="inptTotal" 
                                            readonly="true"
                                            value="#{orcaFormMB.orcamento.total}"/>
                             <!-- <f:convertNumber pattern="#,##0.00" /> --> 

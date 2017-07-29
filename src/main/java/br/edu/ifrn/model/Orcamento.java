@@ -1,7 +1,6 @@
 package br.edu.ifrn.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 public class Orcamento implements Serializable, Comparable<Orcamento> {
@@ -61,7 +60,7 @@ public class Orcamento implements Serializable, Comparable<Orcamento> {
         this.total = total;
     }
 
-
+    // usado para criar demo ----------------
     public Orcamento Obra(Obra obra) {
         this.obra = obra;
         return this;
@@ -81,7 +80,8 @@ public class Orcamento implements Serializable, Comparable<Orcamento> {
         this.total = total;
         return this;
     }
-
+    // --------------------------------------
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -102,6 +102,7 @@ public class Orcamento implements Serializable, Comparable<Orcamento> {
             return false;
         }
         Orcamento other = (Orcamento) obj;
+        
         if (idOrcamento == null) {
             if (other.idOrcamento != null) {
                 return false;
