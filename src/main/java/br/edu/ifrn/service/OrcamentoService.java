@@ -98,16 +98,20 @@ public class OrcamentoService implements Serializable {
         }
 
         if (has(filtro.getEntidade())) {
-            Orcamento filterEntity = filtro.getEntidade();
-            if (has(filterEntity.getDescricao())) {
-                Predicate<Orcamento> nomeOrcamentoPredicate = (Orcamento c) -> c.getDescricao().toLowerCase().contains(filterEntity.getNomeOrcamento().toLowerCase());
-                predicates.add(nomeOrcamentoPredicate);
+            Orcamento filtrorEntidade = filtro.getEntidade();
+            if (has(filtrorEntidade.getDescricao())) {
+                Predicate<Orcamento> orcaPredicate = (Orcamento c) 
+                        -> c.getDescricao()
+                                .toLowerCase()
+                                .contains(filtrorEntidade.getDescricao().toLowerCase());
+                predicates.add(orcaPredicate);
             }           
         }
+        
         return predicates;
     }
 
-    public List<String> getNomeOrcamento(String query) {
+    public List<String> getDescricao(String query) {
         return todosOrcamentos.stream().filter(c -> c.getDescricao()
                 .toLowerCase().contains(query.toLowerCase()))
                 .map(Orcamento::getDescricao)
@@ -126,7 +130,7 @@ public class OrcamentoService implements Serializable {
     public void validar(Orcamento orcamento) {
         BusinessException be = new BusinessException();
         if (!orcamento.temDescricao()) {
-            be.addException(new BusinessException("O nome da Orcamento não pode estar vazio"));
+            be.addException(new BusinessException("O nome do Orçamento não pode estar vazio"));
         }
 
 //        if (!has(orcamento.getBDI())) {
@@ -136,7 +140,7 @@ public class OrcamentoService implements Serializable {
         if (todosOrcamentos.stream()
                 .filter(c -> c.getDescricao().equalsIgnoreCase(orcamento.getDescricao())
                 && c.getIdOrcamento() != c.getIdOrcamento()).count() > 0) {
-            be.addException(new BusinessException("Nome da Orcamento tem que ser único"));
+            be.addException(new BusinessException("Descrição tem que ser única"));
         }
         
         if (has(be.getExceptionList())) {
@@ -159,7 +163,7 @@ public class OrcamentoService implements Serializable {
         return todosOrcamentos.stream()
                 .filter(c -> c.getIdOrcamento().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new BusinessException("Orcamento não encontrado com o código " + id));
+                .orElseThrow(() -> new BusinessException("Orçamento não encontrado: " + id));
     }
 
     public void atualizar(Orcamento orcamento) {

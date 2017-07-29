@@ -1,16 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:adm="http://github.com/adminfaces"
+                template="#{layoutMB.layout}">
+
+    <ui:define name="title">
+        Cadastro Orçmentos
+    </ui:define>
+
+    <ui:define name="body">
+        <f:metadata>
+            <f:viewParam name="idOrcamento" 
+                         value="#{orcaFormMB.id}" 
+                         converter="javax.faces.Long"/>
+            <f:viewAction action="#{orcaFormMB.init()}"/> 
+            <f:event type="preRenderView" 
+                     listener="#{orcaFormMB.init}"/>
+        </f:metadata>
+         <!-- 
+        <adm:breadcrumb title="#{empty orcaFormMB.id ? 'Novo Orçamento' : 'Orçamento '.concat(orcaFormMB.id)}" link="orca-form.xhtml?id=#{orcaFormMB.id}"/>
+         -->
+        
+        <h:form id="form" prependId="false">
+            <p:focus rendered="#{empty orcaFormMB.id}"/>
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div id="main-buttons" class="hidden-sm hidden-xs">
+                        <p:commandButton value="Salvar" 
+                                         action="#{orcaFormMB.salvar}" 
+                                         update="@form"
+                                         icon="fa fa-check" 
+                                         styleClass="btn-primary"/>
+                        
+                        <p:spacer width="5" rendered="#{orcaFormMB.isNew()}"/>
+                        
+                        <p:commandButton value="Limpar" 
+                                         action="#{orcaFormMB.limpar}" 
+                                         process="@this"
+                                         icon="fa fa-refresh" 
+                                         styleClass="btn-success"
+                                         update="@form" 
+                                         rendered="#{orcaFormMB.isNew()}" 
+                                         resetValues="true"/>
+                        
+                        <p:spacer width="5" rendered="#{not orcaFormMB.isNew()}"/>
+
+                        <p:commandButton value="Apagar" 
+                                         action="#{orcaFormMB.remover}" 
+                                         process="@this"
+                                         rendered="#{not orcaFormMB.isNew()}" 
+                                         icon="fa fa-trash"
+                                         styleClass="btn-danger">
+                            
+                            <f:setPropertyActionListener value="true" 
+                                                         target="#{facesContext.externalContext.flash.keepMessages}"/>
+                            <p:confirm header="Confirmação" message="Você tem certeza?" icon="ui-icon-danger"/>
+                        </p:commandButton>
+                        
+                        <p:spacer width="5"/>
+                        
+                        <p:commandButton value="Voltar" 
+                                         immediate="true"
+                                         action="orca-lista?faces-redirect=true"
+                                         process="@this"
+                                         icon="fa fa-close"/>
+                    </div>
+                    
+                    <p:splitButton value="Salvar" 
+                                   action="#{orcaFormMB.salvar}" 
+                                   update="@form"
+                                   icon="fa fa-check"
+                                   styleClass="hidden-md hidden-lg btn-primary">
+                        <p:menuitem value="Limpar" 
+                                    action="#{orcaFormMB.limpar}"
+                                    process="@this" 
+                                    update="@form" 
+                                    rendered="#{orcaFormMB.isNew()}"
+                                    resetValues="true" 
+                                    icon="fa fa-refresh"/>
+                        <p:menuitem value="Delete" 
+                                    action="#{orcaFormMB.remover}" 
+                                    process="@this"
+                                    rendered="#{not orcaFormMB.isNew()}" 
+                                    icon="fa fa-trash"
+                                 >
+                            <p:confirm header="Confirmação" 
+                                       message="Você tem certeza?" 
+                                       icon="ui-icon-danger"/>
+                        </p:menuitem>
+                        <p:separator/>
+                        <p:menuitem value="Voltar" 
+                                    action="orca-lista?faces-redirect=true"
+                                    process="@this" 
+                                    immediate="true"
+                                    icon="fa fa-close"/>
+                    </p:splitButton>
+
+                    <p:separator/>
+
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12">
+                            <p:outputLabel for="id" 
+                                           value="ID"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText id="id" 
+                                         value="#{orcaFormMB.orcamento.idOrcamnto}" 
+                                         size="4"
+                                         readonly="true" 
+                                         styleClass="form-control"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel value="Descricao"
+                                           for="inptDescricao"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText id="inptDescricao" 
+                                         value="#{orcaFormMB.orcamento.descricao}"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel value="Total" 
+                                           for="inptTotal"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputNumber id="inpTotal" 
+                                           readonly="true"
+                                           value="#{orcaFormMB.orcamento.total}"/>
+                            <!-- <f:convertNumber pattern="#,##0.00" /> --> 
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <p:confirmDialog global="true" 
+                             showEffect="fade" 
+                             hideEffect="fade" 
+                             styleClass="box-danger">
+                <p:commandButton value="Sim" 
+                                 type="button" 
+                                 styleClass="btn-primary ui-confirmdialog-yes"
+                                 icon="fa fa-check"/>
+                <p:commandButton value="Não" 
+                                 type="button" 
+                                 styleClass="btn-danger ui-confirmdialog-no"
+                                 icon="fa fa-close"/>
+            </p:confirmDialog>
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>

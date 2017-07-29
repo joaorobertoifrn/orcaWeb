@@ -32,7 +32,7 @@ public class OrcaListaMB implements Serializable {
 
     List<Orcamento> selecaoOrcamento; // orcamentos selecionados na coluna do check-box  
 
-    List<Orcamento> valorFiltrado;  // datatable valorFiltrado attribute (column filters)
+    List<Orcamento> valorFiltrado;   // datatable valorFiltrado attribute (column filters)
 
     @PostConstruct
     public void initDataModel() {
@@ -90,7 +90,7 @@ public class OrcaListaMB implements Serializable {
             orcamentoService.remover(orcamentoSelecionado);
         }
         selecaoOrcamento.clear();
-        adicionaMensagem(numOrcamento + " Orcamento apagada com sucesso!");
+        adicionaMensagem(numOrcamento + " Orçamento apagado com sucesso!");
     }
 
     public List<Orcamento> getSelecaoOrcamento() {
