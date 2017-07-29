@@ -8,8 +8,7 @@ public class BasePrecos implements Serializable, Comparable<BasePrecos> {
     private Integer idBasePrecos;
     private String mesAno;
     private Date dataImportacao;
-    private String descricao;
-    private double url;
+    private String url;
 
     public BasePrecos() {
     }
@@ -30,11 +29,7 @@ public class BasePrecos implements Serializable, Comparable<BasePrecos> {
         return dataImportacao;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public double getUrl() {
+    public String getUrl() {
         return url;
     }
 
@@ -50,11 +45,7 @@ public class BasePrecos implements Serializable, Comparable<BasePrecos> {
         this.dataImportacao = dataImportacao;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public void setUrl(double url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 
@@ -68,16 +59,10 @@ public class BasePrecos implements Serializable, Comparable<BasePrecos> {
         return this;
     }
 
-    public BasePrecos descricao(String descricao) {
-        this.descricao = descricao;
-        return this;
-    }
-
-    public BasePrecos url(double url) {
+    public BasePrecos url(String url) {
         this.url = url;
         return this;
     }
-
       
     @Override
     public int hashCode() {
@@ -104,12 +89,12 @@ public class BasePrecos implements Serializable, Comparable<BasePrecos> {
         return true;
     }
 
-    public boolean temDescricao() {
-        return descricao != null && !"".equals(descricao.trim());
-    }
-
     public boolean temMesAno() {
         return mesAno != null && !"".equals(mesAno.trim());
+    }
+
+    public boolean temUrl() {
+        return url != null && !"".equals(url.trim());
     }
 
     @Override

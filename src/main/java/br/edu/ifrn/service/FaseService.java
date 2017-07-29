@@ -23,7 +23,8 @@ public class FaseService implements Serializable {
 
     public List<Fase> porDescricao(String nomeFase) {
         return todasFases.stream()
-                .filter(c -> c.getDescricao().equalsIgnoreCase(nomeFase))
+                .filter(c -> c.getDescricao()
+                .equalsIgnoreCase(nomeFase))
                 .collect(Collectors.toList());
 
     }

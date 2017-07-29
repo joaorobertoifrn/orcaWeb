@@ -12,12 +12,13 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.stream.IntStream;
 
-/// gera dados demo somente
+/// gera dados dados demo antes da app iniciar
 @ApplicationScoped
 public class Utils implements Serializable {
 
     private List<Obra> obra;
     private List<Fase> fase;
+    
 
 
     @PostConstruct
@@ -26,7 +27,7 @@ public class Utils implements Serializable {
         obra = new ArrayList<>();
       
         IntStream.rangeClosed(1, 30).forEach(i -> fase.add(gerarFases(i)));
-        IntStream.rangeClosed(1, 30).forEach(i -> obra.add(gerarObras(i)));
+        IntStream.rangeClosed(1, 30).forEach(j -> obra.add(gerarObras(j)));
         
     }
 
@@ -52,12 +53,13 @@ public class Utils implements Serializable {
     }
 
     @Produces
-    public List<Obra> getObra() {
-        return obra;
-    }
-    @Produces
     public List<Fase> getFase() {
         return fase;
     }
+    @Produces
+    public List<Obra> getObra() {
+        return obra;
+    }
+    
 
 }

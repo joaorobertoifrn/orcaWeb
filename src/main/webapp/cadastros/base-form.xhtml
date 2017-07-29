@@ -8,51 +8,51 @@
                 template="#{layoutMB.layout}">
 
     <ui:define name="title">
-        Cadastro Fases
+        Cadastro Base de Preços
     </ui:define>
 
     <ui:define name="body">
         <f:metadata>
-            <f:viewParam name="idFase" 
-                         value="#{faseFormMB.id}" 
+            <f:viewParam name="idBasePrecos" 
+                         value="#{baseFormMB.id}" 
                          converter="javax.faces.Long"/>
-            <f:viewAction action="#{faseFormMB.init()}"/> 
+            <f:viewAction action="#{baseFormMB.init()}"/> 
             <f:event type="preRenderView" 
-                     listener="#{faseFormMB.init}"/>
+                     listener="#{baseFormMB.init}"/>
         </f:metadata>
-        <!--   
-        <adm:breadcrumb title="#{empty faseFormMB.id ? 'Nova Obra' : 'Obra '.concat(faseFormMB.id)}" link="fase-form.xhtml?id=#{faseFormMB.id}"/>
-        --> 
+         <!-- 
+        <adm:breadcrumb title="#{empty baseFormMB.id ? 'Nova Base' : 'Base '.concat(baseFormMB.id)}" link="base-form.xhtml?id=#{baseFormMB.id}"/>
+         -->
+        
         <h:form id="form" prependId="false">
-            <p:focus rendered="#{empty faseFormMB.id}"/>
+            <p:focus rendered="#{empty baseFormMB.id}"/>
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    
                     <div id="main-buttons" class="hidden-sm hidden-xs">
                         <p:commandButton value="Salvar" 
-                                         action="#{faseFormMB.salvar}" 
+                                         action="#{baseFormMB.salvar}" 
                                          update="@form"
                                          icon="fa fa-check" 
                                          styleClass="btn-primary"/>
                         
-                        <p:spacer width="5" rendered="#{faseFormMB.isNew()}"/>
+                        <p:spacer width="5" rendered="#{baseFormMB.isNew()}"/>
                         
                         <p:commandButton value="Limpar" 
-                                         action="#{faseFormMB.limpar}" 
+                                         action="#{baseFormMB.limpar}" 
                                          process="@this"
                                          icon="fa fa-refresh" 
                                          styleClass="btn-success"
                                          update="@form" 
-                                         rendered="#{faseFormMB.isNew()}" 
+                                         rendered="#{baseFormMB.isNew()}" 
                                          resetValues="true"/>
                         
-                        <p:spacer width="5" rendered="#{not faseFormMB.isNew()}"/>
+                        <p:spacer width="5" rendered="#{not baseFormMB.isNew()}"/>
 
                         <p:commandButton value="Apagar" 
-                                         action="#{faseFormMB.remove}" 
+                                         action="#{baseFormMB.remover}" 
                                          process="@this"
-                                         rendered="#{not faseFormMB.isNew()}" 
+                                         rendered="#{not baseFormMB.isNew()}" 
                                          icon="fa fa-trash"
                                          styleClass="btn-danger">
                             
@@ -63,27 +63,27 @@
                         <p:spacer width="5"/>
                         <p:commandButton value="Voltar" 
                                          immediate="true"
-                                         action="fase-lista?faces-redirect=true"
+                                         action="base-lista?faces-redirect=true"
                                          process="@this"
                                          icon="fa fa-close"/>
                     </div>
                     
                     <p:splitButton value="Salvar" 
-                                   action="#{faseFormMB.salvar}" 
+                                   action="#{baseFormMB.salvar}" 
                                    update="@form"
                                    icon="fa fa-check"
                                    styleClass="hidden-md hidden-lg btn-primary">
                         <p:menuitem value="Limpar" 
-                                    action="#{faseFormMB.limpar}"
+                                    action="#{baseFormMB.limpar}"
                                     process="@this" 
                                     update="@form" 
-                                    rendered="#{faseFormMB.isNew()}"
+                                    rendered="#{baseFormMB.isNew()}"
                                     resetValues="true" 
                                     icon="fa fa-refresh"/>
                         <p:menuitem value="Delete" 
-                                    action="#{faseFormMB.remove}" 
+                                    action="#{baseFormMB.remover}" 
                                     process="@this"
-                                    rendered="#{not faseFormMB.isNew()}" 
+                                    rendered="#{not baseFormMB.isNew()}" 
                                     icon="fa fa-trash"
                                  >
                             <p:confirm header="Confirmação" 
@@ -92,7 +92,7 @@
                         </p:menuitem>
                         <p:separator/>
                         <p:menuitem value="Voltar" 
-                                    action="fase-lista?faces-redirect=true"
+                                    action="base-lista?faces-redirect=true"
                                     process="@this" 
                                     immediate="true"
                                     icon="fa fa-close"/>
@@ -107,26 +107,34 @@
                         </div>
                         <div class="ui-g-12">
                             <p:inputText id="id" 
-                                         value="#{faseFormMB.fase.idFase}" 
+                                         value="#{baseFormMB.base.idBasePrecos}" 
                                          size="4"
                                          readonly="true" 
                                          styleClass="form-control"/>
                         </div>
                         <div class="ui-g-12">
-                            <p:outputLabel value="Descricao"
-                                           for="inptDescricao"/>
+                            <p:outputLabel value="Mes/Ano"
+                                           for="inptMesAno"/>
                         </div>
                         <div class="ui-g-12">
-                            <p:inputText id="inptDescricao" 
-                                         value="#{faseFormMB.fase.descricao}"/>
+                            <p:inputText id="inptMesAno" 
+                                         value="#{baseFormMB.base.mesAno}"/>
                         </div>
                         <div class="ui-g-12">
-                            <p:outputLabel value="Item" 
-                                           for="inptItem"/>
+                            <p:outputLabel value="Data-Importação" 
+                                           for="inptData"/>
                         </div>
                         <div class="ui-g-12">
-                            <p:inputNumber id="inptItem" 
-                                           value="#{faseFormMB.fase.item}"/>
+                            <p:inputNumber id="inptData" 
+                                         value="#{baseFormMB.base.DataImportacao}"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:outputLabel value="URL" 
+                                           for="inptUrl"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputNumber id="inptUrl" 
+                                         value="#{baseFormMB.base.Url}"/>
                         </div>
                         
                     </div>
