@@ -13,7 +13,7 @@
 
     <ui:define name="body">
         <f:metadata>
-            <f:viewParam name="idBasePrecos" 
+            <f:viewParam name="idBase" 
                          value="#{baseFormMB.id}" 
                          converter="javax.faces.Long"/>
             <f:viewAction action="#{baseFormMB.init()}"/> 
@@ -107,7 +107,7 @@
                         </div>
                         <div class="ui-g-12">
                             <p:inputText id="id" 
-                                         value="#{baseFormMB.base.idBasePrecos}" 
+                                         value="#{baseFormMB.base.idBase}" 
                                          size="4"
                                          readonly="true" 
                                          styleClass="form-control"/>
@@ -121,20 +121,12 @@
                                          value="#{baseFormMB.base.mesAno}"/>
                         </div>
                         <div class="ui-g-12">
-                            <p:outputLabel value="Data-Importação" 
-                                           for="inptData"/>
-                        </div>
-                        <div class="ui-g-12">
-                            <p:inputNumber id="inptData" 
-                                         value="#{baseFormMB.base.DataImportacao}"/>
-                        </div>
-                        <div class="ui-g-12">
                             <p:outputLabel value="URL" 
                                            for="inptUrl"/>
                         </div>
                         <div class="ui-g-12">
-                            <p:inputNumber id="inptUrl" 
-                                         value="#{baseFormMB.base.Url}"/>
+                            <p:inputText id="inptUrl" 
+                                         value="#{baseFormMB.base.url}"/>
                         </div>
                         
                     </div>

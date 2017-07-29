@@ -3,63 +3,49 @@ package br.edu.ifrn.model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class BasePrecos implements Serializable, Comparable<BasePrecos> {
+public class Base implements Serializable, Comparable<Base> {
 
-    private Integer idBasePrecos;
+    private Integer idBase;
     private String mesAno;
-    private Date dataImportacao;
     private String url;
 
-    public BasePrecos() {
+    public Base() {
     }
 
-    public BasePrecos(Integer id) {
-        this.idBasePrecos = id;
+    public Base(Integer id) {
+        this.idBase = id;
     }
 
-    public Integer getIdBasePrecos() {
-        return idBasePrecos;
+    public Integer getIdBase() {
+        return idBase;
     }
 
     public String getMesAno() {
         return mesAno;
     }
 
-    public Date getDataImportacao() {
-        return dataImportacao;
-    }
-
     public String getUrl() {
         return url;
     }
 
-    public void setId(Integer idBasePrecos) {
-        this.idBasePrecos = idBasePrecos;
+    public void setIdBase(Integer idBase) {
+        this.idBase = idBase;
     }
 
     public void setMesAno(String mesAno) {
         this.mesAno = mesAno;
     }
 
-    public void setDataImportacao(Date dataImportacao) {
-        this.dataImportacao = dataImportacao;
-    }
-
     public void setUrl(String url) {
         this.url = url;
     }
 
-    public BasePrecos mesAno(String mesAno) {
+    public Base mesAno(String mesAno) {
         this.mesAno = mesAno;
         return this;
     }
 
-    public BasePrecos dataImportacao(Date dataImportacao) {
-        this.dataImportacao = dataImportacao;
-        return this;
-    }
-
-    public BasePrecos url(String url) {
+    public Base url(String url) {
         this.url = url;
         return this;
     }
@@ -68,7 +54,7 @@ public class BasePrecos implements Serializable, Comparable<BasePrecos> {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((idBasePrecos == null) ? 0 : idBasePrecos.hashCode());
+        result = prime * result + ((idBase == null) ? 0 : idBase.hashCode());
         return result;
     }
 
@@ -80,11 +66,11 @@ public class BasePrecos implements Serializable, Comparable<BasePrecos> {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        BasePrecos other = (BasePrecos) obj;
-        if (idBasePrecos == null) {
-            if (other.idBasePrecos != null)
+        Base other = (Base) obj;
+        if (idBase == null) {
+            if (other.idBase != null)
                 return false;
-        } else if (!idBasePrecos.equals(other.idBasePrecos))
+        } else if (!idBase.equals(other.idBase))
             return false;
         return true;
     }
@@ -98,7 +84,7 @@ public class BasePrecos implements Serializable, Comparable<BasePrecos> {
     }
 
     @Override
-    public int compareTo(BasePrecos o) {
-        return this.idBasePrecos.compareTo(o.getIdBasePrecos());
+    public int compareTo(Base o) {
+        return this.idBase.compareTo(o.getIdBase());
     }
 }

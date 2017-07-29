@@ -135,26 +135,14 @@
                             </f:facet>
                             
                             <p:link value="#{c.mesAno}" outcome="base-form.xhtml" >
-                                <f:param name="idBasePrecos" value="#{c.idBase}"/>
+                                <f:param name="idBase" value="#{c.idBase}"/>
                             </p:link>
 
                         </p:column>
                         
-                        
-                       
-                        <p:column headerText="Data Importação" sortBy="#{c.dataImportacao}" filterBy="#{c.dataImportacao}">
-                            <f:facet name="filter">
-                                <p:spinner value="#{baseListaMB.filtro.entidade.dataImportacao}">
-                                    <f:convertDateTime dateStyle="full" locale="br" timeStyle="long" type="both" />
-                                    <p:ajax process="@this" update="@none" oncomplete="PF('baseTable').filter()"/>
-                                </p:spinner>
-                            </f:facet>
-                            #{c.dataImportacao}
-                        </p:column>
-                        
                          <p:column headerText="URL" sortBy="#{c.url}" filterBy="#{c.url}">
                             <f:facet name="filter">
-                                <p:inputText value="#{faseListaMB.filtro.entidade.url}">
+                                <p:inputText value="#{baseListaMB.filtro.entidade.url}">
                                     <p:ajax process="@this" update="@none" oncomplete="PF('baseTable').filter()"/>
                                 </p:inputText>
                             </f:facet>
@@ -186,7 +174,7 @@
                   styleClass="box-success">
             <p:dataList id="selecaoBaseLista" value="#{baseListaMB.selecaoBase}" var="base"
                         type="definition">
-                ID: #{base.idBasePrecos} - Mes/Ano: #{base.mesAno} - BDI: #{base.url}
+                ID: #{base.idBase} - Mes/Ano: #{base.mesAno} - BDI: #{base.url}
             </p:dataList>
         </p:dialog>
 
