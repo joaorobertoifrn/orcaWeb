@@ -17,7 +17,7 @@
     </ui:define>
 
     <ui:define name="title">
-        Listagem de Obras
+        Lista de Obras
     </ui:define>
 
     <ui:define name="description">
@@ -30,11 +30,15 @@
         <h:form>
             <div class="box box-primary">
                 <div class="box-header with-border">
+                    
                     <div id="main-buttons" class="hidden-sm hidden-xs">
-                        <p:commandButton action="obra-form?faces-redirect=true" icon="fa fa-plus"
+                        <p:commandButton action="obra-form?faces-redirect=true" 
+                                         icon="fa fa-plus"
                                          value="Novo" styleClass="btn-primary"/>
                         <p:spacer width="5"/>
-                        <p:commandButton value="Apagar Selecionados" icon="fa fa-trash" styleClass="btn-danger"
+                        <p:commandButton value="Apagar Selecionados" 
+                                         icon="fa fa-trash" 
+                                         styleClass="btn-danger"
                                          action="#{obraListaMB.delete}"
                                          disabled="#{empty obraListaMB.selecaoObra or obraListaMB.selecaoObra.size() == 0}"
                                          process="@this" 
@@ -44,7 +48,9 @@
                                        message="Você tem certeza?" 
                                        icon="ui-icon-danger"/>
                         </p:commandButton>
+                        
                         <p:spacer width="5"/>
+                        
                         <p:commandButton value="Exibir selecionados" 
                                          update="@(.ui-dialog)" 
                                          styleClass="btn-info"
@@ -66,7 +72,7 @@
                         </p:menuitem>
                         <p:menuitem value="Exibir selecionados" 
                                     update="@(.ui-dialog)"
-                                    oncomplete="PF('seleccaoObra').show()"
+                                    oncomplete="PF('selecaoObra').show()"
                                     disabled="#{empty obraListaMB.selecaoObra or ObraListaMB.selecaoObra.size() == 0}"
                                     icon="fa fa-search"
                         />
@@ -96,7 +102,7 @@
 
 
                         <f:facet name="header">
-                            Encontre Obra pelo código: <p:inputText id="inptId" value="#{obraListaMB.id}"/>
+                            Código: <p:inputText id="inptId" value="#{obraListaMB.id}"/>
                             <p:spacer height="5"/>
                             <p:commandButton id="brFind"
                                              value="Encontrar"
@@ -112,6 +118,7 @@
                                   filterBy="#{c.nomeObra}" 
                                   sortBy="#{c.nomeObra}"
                                   filterMatchMode="contains">
+                            
                             <f:facet name="filter">
                                 <p:autoComplete value="#{obraListaMB.filtro.entidade.nomeObra}" 
                                                 forceSelection="true"
@@ -119,7 +126,9 @@
                                                 queryDelay="500"
                                                 completeMethod="#{obraListaMB.completeNomeObra}" 
                                                 maxResults="10">
-                                    <p:ajax event="itemSelect" process="@this" update="@none"
+                                    <p:ajax event="itemSelect" 
+                                            process="@this" 
+                                            update="@none"
                                             oncomplete="PF('obraTable').filter()"/>
                                 </p:autoComplete>
                             </f:facet>
@@ -143,7 +152,10 @@
                     
                 </div>
             </div>
-            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" styleClass="box-danger">
+            <p:confirmDialog global="true" 
+                             showEffect="fade" 
+                             hideEffect="fade" 
+                             styleClass="box-danger">
                 <p:commandButton value="Sim" type="button" styleClass="btn-primary ui-confirmdialog-yes"
                                  icon="fa fa-check"/>
                 <p:commandButton value="Não" type="button" styleClass="btn-danger ui-confirmdialog-no"
@@ -153,8 +165,12 @@
 
 
 
-        <p:dialog header="Obras Selecionadas" widgetVar="selecaoObras" height="250"
-                  width="400" responsive="true" styleClass="box-success">
+        <p:dialog header="Obras Selecionadas" 
+                  widgetVar="selecaoObra" 
+                  height="250"
+                  width="400" 
+                  responsive="true" 
+                  styleClass="box-success">
             <p:dataList id="selecaoObraLista" value="#{obraListaMB.selecaoObra}" var="obra"
                         type="definition">
                 ID: #{obra.idObra} - Nome da Obra: #{obra.nomeObra} - BDI: #{obra.BDI}

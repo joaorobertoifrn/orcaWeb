@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import static br.edu.ifrn.util.Utils.adicionaMensagem;
-import static br.edu.ifrn.util.Utils.adicionaMensagem;
 
 /**
  *

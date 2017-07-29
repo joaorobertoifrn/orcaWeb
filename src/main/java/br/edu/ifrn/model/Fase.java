@@ -6,7 +6,7 @@ public class Fase implements Serializable, Comparable<Fase> {
  
 
     private Integer idFase;
-    private String itemizacao;
+    private String item;
     private String descricao;
 
     public Fase() {
@@ -20,21 +20,33 @@ public class Fase implements Serializable, Comparable<Fase> {
         return idFase;
     }
 
-    public String getItemizacao() {
-        return itemizacao;
+    public String getItem() {
+        return item;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public Fase idFase(Integer idFase) {
+    public void setIdFase(Integer idFase) {
+        this.idFase = idFase;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
+    public Fase fase(Integer idFase) {
         this.idFase = idFase;
         return this;
     }
 
-    public Fase itemizacao(String itemizacao) {
-        this.itemizacao = itemizacao;
+    public Fase item(String itemizacao) {
+        this.item = itemizacao;
         return this;
     }
 
@@ -42,8 +54,6 @@ public class Fase implements Serializable, Comparable<Fase> {
         this.descricao = descricao;
         return this;
     }
-
-    
 
     @Override
     public int hashCode() {
@@ -77,6 +87,9 @@ public class Fase implements Serializable, Comparable<Fase> {
 
     public boolean temDescricao() {
         return descricao != null && !"".equals(descricao.trim());
+    }
+     public boolean temItem() {
+        return item != null && !"".equals(item.trim());
     }
 
     @Override

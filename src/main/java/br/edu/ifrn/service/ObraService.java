@@ -133,9 +133,10 @@ public class ObraService implements Serializable {
             be.addException(new BusinessException("BDI não pode estar vazio"));
         }
         
-        if (todasObras.stream().filter(c -> c.getNomeObra().equalsIgnoreCase(obra.getNomeObra())
+        if (todasObras.stream()
+                .filter(c -> c.getNomeObra().equalsIgnoreCase(obra.getNomeObra())
                 && c.getIdObra() != c.getIdObra()).count() > 0) {
-            be.addException(new BusinessException("Nome da Obra tem que ser unico"));
+            be.addException(new BusinessException("Nome da Obra tem que ser único"));
         }
         
         if (has(be.getExceptionList())) {
@@ -154,11 +155,11 @@ public class ObraService implements Serializable {
                 .count();
     }
 
-    public Obra encontarId(Integer id) {
+    public Obra encontrarObraId(Integer id) {
         return todasObras.stream()
                 .filter(c -> c.getIdObra().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new BusinessException("Código Obra não encontrado com o código " + id));
+                .orElseThrow(() -> new BusinessException("Obra não encontrado com o código " + id));
     }
 
     public void atualizar(Obra obra) {

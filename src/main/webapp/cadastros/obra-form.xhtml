@@ -13,16 +13,17 @@
 
     <ui:define name="body">
         <f:metadata>
-            <f:viewParam name="id" 
+            <f:viewParam name="idObra" 
                          value="#{obraFormMB.id}" 
                          converter="javax.faces.Long"/>
             <f:viewAction action="#{obraFormMB.init()}"/> 
             <f:event type="preRenderView" 
                      listener="#{obraFormMB.init}"/>
         </f:metadata>
-        <!--   
+         <!-- 
         <adm:breadcrumb title="#{empty obraFormMB.id ? 'Nova Obra' : 'Obra '.concat(obraFormMB.id)}" link="obra-form.xhtml?id=#{obraFormMB.id}"/>
-        --> 
+         -->
+        
         <h:form id="form" prependId="false">
             <p:focus rendered="#{empty obraFormMB.id}"/>
 
@@ -49,7 +50,7 @@
                         <p:spacer width="5" rendered="#{not obraFormMB.isNew()}"/>
 
                         <p:commandButton value="Apagar" 
-                                         action="#{obraFormMB.remove}" 
+                                         action="#{obraFormMB.remover}" 
                                          process="@this"
                                          rendered="#{not obraFormMB.isNew()}" 
                                          icon="fa fa-trash"
@@ -80,7 +81,7 @@
                                     resetValues="true" 
                                     icon="fa fa-refresh"/>
                         <p:menuitem value="Delete" 
-                                    action="#{obraFormMB.remove}" 
+                                    action="#{obraFormMB.remover}" 
                                     process="@this"
                                     rendered="#{not obraFormMB.isNew()}" 
                                     icon="fa fa-trash"

@@ -1,8 +1,8 @@
 package br.edu.ifrn.control;
 
 import br.edu.ifrn.infra.model.Filtro;
-import br.edu.ifrn.model.Obra;
-import br.edu.ifrn.service.ObraService;
+import br.edu.ifrn.model.Fase;
+import br.edu.ifrn.service.FaseService;
 import com.github.adminfaces.template.exception.BusinessException;
 import org.omnifaces.cdi.ViewScoped;
 import org.primefaces.model.LazyDataModel;
@@ -19,26 +19,26 @@ import static br.edu.ifrn.util.Utils.adicionaMensagem;
 
 @Named
 @ViewScoped
-public class ObraListaMB implements Serializable {
+public class FaseListaMB implements Serializable {
 
     @Inject
-    ObraService obraService;
+    FaseService faseService;
 
     Integer id;
 
-    LazyDataModel<Obra> obra;
+    LazyDataModel<Fase> fase;
 
-    Filtro<Obra> filtro = new Filtro<>(new Obra());
+    Filtro<Fase> filtro = new Filtro<>(new Fase());
 
-    List<Obra> selecaoObra; // obras selecionados na coluna do check-box  
+    List<Fase> selecaoFase; // fases selecionados na coluna do check-box  
 
-    List<Obra> valorFiltrado;  // datatable valorFiltrado attribute (column filters)
+    List<Fase> valorFiltrado;  // datatable valorFiltrado attribute (column filters)
 
     @PostConstruct
     public void initDataModel() {
-        obra = new LazyDataModel<Obra>() {
+        fase = new LazyDataModel<Fase>() {
             @Override
-            public List<Obra> load(int primeiro, int tamanhoPagina,
+            public List<Fase> load(int primeiro, int tamanhoPagina,
                                   String sortField, SortOrder sortOrder,
                                   Map<String, Object> filters) {
                 br.edu.ifrn.infra.model.SortOrder order = null;
@@ -50,8 +50,8 @@ public class ObraListaMB implements Serializable {
                 filtro.setPrimeiro(primeiro).setTamanhoPagina(tamanhoPagina)
                         .setSortField(sortField).setSortOrder(order)
                         .setParametros(filters);
-                List<Obra> lista = obraService.paginacao(filtro);
-                setRowCount((int) obraService.count(filtro));
+                List<Fase> lista = faseService.paginacao(filtro);
+                setRowCount((int) faseService.count(filtro));
                 return lista;
             }
 
@@ -61,67 +61,68 @@ public class ObraListaMB implements Serializable {
             }
 
             @Override
-            public Obra getRowData(String key) {
-                return obraService.encontrarObraId(new Integer(key));
+            public Fase getRowData(String key) {
+                return faseService.encontrarFaseId(new Integer(key));
             }
         };
     }
 
     public void clear() {
-        filtro = new Filtro<Obra>(new Obra());
+        filtro = new Filtro<Fase>(new Fase());
     }
 
-    public List<String> completeNomeObra(String query) {
-        List<String> resultado = obraService.getNomeObra(query);
+    public List<String> completeDescricao(String query) {
+        List<String> resultado = faseService.getDescricao(query);
         return resultado;
     }
 
     public void encontrarId(Integer id) {
         if (id == null) {
-            throw new BusinessException("Informe código da obra");
+            throw new BusinessException("Informe código da fase");
         }
-        selecaoObra.add(obraService.encontrarObraId(id));
+        selecaoFase.add(faseService.encontrarFaseId(id));
     }
 
     public void delete() {
-        int numObra = 0;
-        for (Obra obraSelecionada : selecaoObra) {
-            numObra++;
-            obraService.remover(obraSelecionada);
+        int numFase = 0;
+        for (Fase faseSelecionada : selecaoFase) {
+            numFase++;
+            faseService.remover(faseSelecionada);
         }
-        selecaoObra.clear();
-        adicionaMensagem(numObra + " Obra apagada com sucesso!");
+        selecaoFase.clear();
+        
+        adicionaMensagem(numFase + " Fase apagada com sucesso!");
     }
 
-    public List<Obra> getSelecaoObra() {
-        return selecaoObra;
+    public List<Fase> getSelecaoFase() {
+        return selecaoFase;
     }
 
-    public List<Obra> getValorFiltrado() {
+    public List<Fase> getValorFiltrado() {
         return valorFiltrado;
     }
 
-    public void setValorFiltrado(List<Obra> valorFiltrado) {
+    public void setValorFiltrado(List<Fase> valorFiltrado) {
         this.valorFiltrado = valorFiltrado;
     }
 
-    public void setSelecaoObra(List<Obra> selecaoObra) {
-        this.selecaoObra = selecaoObra;
+    public void setSelecaoFase(List<Fase> selecaoFase) {
+        this.selecaoFase = selecaoFase;
     }
 
-    public LazyDataModel<Obra> getObra() {
-        return obra;
+    public LazyDataModel<Fase> getFase() {
+        return fase;
     }
 
-    public void setObra(LazyDataModel<Obra> obra) {
-        this.obra = obra;
+    public void setFase(LazyDataModel<Fase> fase) {
+        this.fase = fase;
     }
 
-    public Filtro<Obra> getFiltro() {
+    public Filtro<Fase> getFiltro() {
         return filtro;
     }
 
-    public void setFiltro(Filtro<Obra> filtro) {
+    public void setFiltro(Filtro<Fase> filtro) {
         this.filtro = filtro;
     }
 

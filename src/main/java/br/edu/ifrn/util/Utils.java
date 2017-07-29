@@ -1,5 +1,6 @@
 package br.edu.ifrn.util;
 
+import br.edu.ifrn.model.Fase;
 import br.edu.ifrn.model.Obra;
 import org.omnifaces.util.Messages;
 
@@ -16,26 +17,33 @@ import java.util.stream.IntStream;
 public class Utils implements Serializable {
 
     private List<Obra> obra;
+    private List<Fase> fase;
 
 
     @PostConstruct
     public void init() {
+        fase = new ArrayList<>();
         obra = new ArrayList<>();
-        IntStream.rangeClosed(1, 50)
-                .forEach(i -> obra.add(criar(i)));
+      
+        IntStream.rangeClosed(1, 30).forEach(i -> fase.add(gerarFases(i)));
+        IntStream.rangeClosed(1, 30).forEach(i -> obra.add(gerarObras(i)));
+        
     }
 
-    private static Obra criar(int i) {
+    private static Obra gerarObras(int i) {
         return new Obra(i).nomeObra("Obra " + i).BDI(Double.valueOf(i));
     }
-
-     public static void adicionaMensagem(String mensagem){
-       adicionaMensagem(mensagem, null);
+    private static Fase gerarFases(int i) {
+        return new Fase(i).descricao("Fase " + i).item(i+".");
     }
 
-    public static void adicionaMensagem(String mensagem, FacesMessage.Severity severity){
+    public static void adicionaMensagem(String msg){
+       adicionaMensagem(msg, null);
+    }
 
-        FacesMessage facesMessage = Messages.create("").detail(mensagem).get();
+    public static void adicionaMensagem(String msg, FacesMessage.Severity severity){
+
+        FacesMessage facesMessage = Messages.create("").detail(msg).get();
         if(severity != null && severity != FacesMessage.SEVERITY_INFO) {
             facesMessage.setSeverity(severity);
         } else{
@@ -44,8 +52,12 @@ public class Utils implements Serializable {
     }
 
     @Produces
-    public List<Obra> getInsumos() {
+    public List<Obra> getObra() {
         return obra;
+    }
+    @Produces
+    public List<Fase> getFase() {
+        return fase;
     }
 
 }

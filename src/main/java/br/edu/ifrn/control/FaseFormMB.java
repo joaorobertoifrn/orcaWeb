@@ -1,7 +1,7 @@
 package br.edu.ifrn.control;
 
-import br.edu.ifrn.model.Obra;
-import br.edu.ifrn.service.ObraService;
+import br.edu.ifrn.model.Fase;
+import br.edu.ifrn.service.FaseService;
 import org.omnifaces.cdi.ViewScoped;
 import org.omnifaces.util.Faces;
 
@@ -15,24 +15,24 @@ import static br.edu.ifrn.util.Utils.adicionaMensagem;
 
 @Named
 @ViewScoped
-public class ObraFormMB implements Serializable {
+public class FaseFormMB implements Serializable {
 
 
     private Integer id;
-    private Obra obra;
+    private Fase fase;
 
 
     @Inject
-    ObraService obraService;
+    FaseService faseService;
 
     public void init() {
         if(Faces.isAjaxRequest()){
            return;
         }
         if (has(id)) {
-            obra = obraService.encontrarObraId(id);
+            fase = faseService.encontrarFaseId(id);
         } else {
-            obra = new Obra();
+            fase = new Fase();
         }
     }
 
@@ -44,43 +44,43 @@ public class ObraFormMB implements Serializable {
         this.id = id;
     }
 
-    public Obra getObra() {
-        return obra;
+    public Fase getFase() {
+        return fase;
     }
 
-    public void setObra(Obra obra) {
-        this.obra = obra;
+    public void setFase(Fase fase) {
+        this.fase = fase;
     }
 
 
     public void remover() throws IOException {
-        if (has(obra) && has(obra.getIdObra())) {
-            obraService.remover(obra);
-            adicionaMensagem("Obra " + obra.getNomeObra() + " removida com sucesso");
+        if (has(fase) && has(fase.getIdFase())) {
+            faseService.remover(fase);
+            adicionaMensagem("Fase " + fase.getDescricao() + " removida com sucesso");
             Faces.getFlash().setKeepMessages(true);
-            Faces.redirect("obra-lista.xhtml");
+            Faces.redirect("fase-lista.xhtml");
         }
     }
 
     public void salvar() {
         String msg;
-        if (obra.getIdObra() == null) {
-            obraService.inserir(obra);
-            msg = "Obra " + obra.getNomeObra() + " salva com sucesso";
+        if (fase.getIdFase() == null) {
+            faseService.inserir(fase);
+            msg = "Fase " + fase.getDescricao() + " salva com sucesso";
         } else {
-            obraService.atualizar(obra);
-            msg = "Obra " + obra.getNomeObra() + " atualizado com successo";
+            faseService.atualizar(fase);
+            msg = "Fase " + fase.getDescricao() + " atualizada com successo";
         }
         adicionaMensagem(msg);
     }
 
     public void limpar() {
-        obra = new Obra();
+        fase = new Fase();
         id = null;
     }
 
     public boolean isNew() {
-        return obra == null || obra.getIdObra() == null;
+        return fase == null || fase.getIdFase() == null;
     }
 
 }
