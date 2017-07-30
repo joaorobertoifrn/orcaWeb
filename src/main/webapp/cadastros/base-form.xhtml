@@ -8,7 +8,7 @@
                 template="#{layoutMB.layout}">
 
     <ui:define name="title">
-        Cadastro Base de Preços
+        Base de Preços
     </ui:define>
 
     <ui:define name="body">
@@ -86,6 +86,7 @@
                                     rendered="#{not baseFormMB.isNew()}" 
                                     icon="fa fa-trash"
                                  >
+                        
                             <p:confirm header="Confirmação" 
                                        message="Você tem certeza?" 
                                        icon="ui-icon-danger"/>
@@ -101,30 +102,30 @@
                     <p:separator/>
 
                     <div class="ui-g ui-fluid">
-                        <div class="ui-g-12">
+                        <div class="ui-g-1">
                             <p:outputLabel for="id" 
                                            value="ID"/>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="ui-g-1">
                             <p:inputText id="id" 
                                          value="#{baseFormMB.base.idBase}" 
                                          size="4"
                                          readonly="true" 
                                          styleClass="form-control"/>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="ui-g-1">
                             <p:outputLabel value="Mes/Ano"
                                            for="inptMesAno"/>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="ui-g-9">
                             <p:inputText id="inptMesAno" 
                                          value="#{baseFormMB.base.mesAno}"/>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="ui-g-1">
                             <p:outputLabel value="URL" 
                                            for="inptUrl"/>
                         </div>
-                        <div class="ui-g-12">
+                        <div class="ui-g-11">
                             <p:inputText id="inptUrl" 
                                          value="#{baseFormMB.base.url}"/>
                         </div>

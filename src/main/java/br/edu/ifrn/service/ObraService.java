@@ -19,10 +19,10 @@ import static com.github.adminfaces.template.util.Assert.has;
 public class ObraService implements Serializable {
 
     @Inject
-    List<Obra> todasObras;
+    List<Obra> todasComposicoes;
 
     public List<Obra> porNomeObra(String nomeObra) {
-        return todasObras.stream()
+        return todasComposicoes.stream()
                 .filter(c -> c.getNomeObra().equalsIgnoreCase(nomeObra))
                 .collect(Collectors.toList());
 
@@ -31,7 +31,7 @@ public class ObraService implements Serializable {
     public List<Obra> paginacao(Filtro<Obra> filtro) {
         List<Obra> paginadaObras = new ArrayList<>();
         if (has(filtro.getSortOrder()) && !SortOrder.UNSORTED.equals(filtro.getSortOrder())) {
-            paginadaObras = todasObras.stream().
+            paginadaObras = todasComposicoes.stream().
                     sorted((c1, c2) -> {
                         if (filtro.getSortOrder().isAscending()) {
                             return c1.getIdObra().compareTo(c2.getIdObra());
@@ -44,13 +44,13 @@ public class ObraService implements Serializable {
 
         int page = filtro.getPrimeiro() + filtro.getTamanhoPagina();
         if (filtro.getParametros().isEmpty()) {
-            paginadaObras = paginadaObras.subList(filtro.getPrimeiro(), page > todasObras.size() ? todasObras.size() : page);
+            paginadaObras = paginadaObras.subList(filtro.getPrimeiro(), page > todasComposicoes.size() ? todasComposicoes.size() : page);
             return paginadaObras;
         }
 
         List<Predicate<Obra>> predicates = configuraFiltro(filtro);
 
-        List<Obra> pagedList = todasObras.stream().filter(predicates
+        List<Obra> pagedList = todasComposicoes.stream().filter(predicates
                 .stream().reduce(Predicate::or).orElse(t -> true))
                 .collect(Collectors.toList());
 
@@ -108,7 +108,7 @@ public class ObraService implements Serializable {
     }
 
     public List<String> getNomeObra(String query) {
-        return todasObras.stream().filter(c -> c.getNomeObra()
+        return todasComposicoes.stream().filter(c -> c.getNomeObra()
                 .toLowerCase().contains(query.toLowerCase()))
                 .map(Obra::getNomeObra)
                 .collect(Collectors.toList());
@@ -116,11 +116,11 @@ public class ObraService implements Serializable {
 
     public void inserir(Obra obra) {
         validar(obra);
-        obra.setIdObra(todasObras.stream()
+        obra.setIdObra(todasComposicoes.stream()
                 .mapToInt(c -> c.getIdObra())
                 .max()
                 .getAsInt() + 1);
-        todasObras.add(obra);
+        todasComposicoes.add(obra);
     }
 
     public void validar(Obra obra) {
@@ -133,7 +133,7 @@ public class ObraService implements Serializable {
             be.addException(new BusinessException("BDI não pode estar vazio"));
         }
         
-        if (todasObras.stream()
+        if (todasComposicoes.stream()
                 .filter(c -> c.getNomeObra().equalsIgnoreCase(obra.getNomeObra())
                 && c.getIdObra() != c.getIdObra()).count() > 0) {
             be.addException(new BusinessException("Nome da Obra tem que ser único"));
@@ -145,18 +145,18 @@ public class ObraService implements Serializable {
     }
 
     public void remover(Obra obra) {
-        todasObras.remove(obra);
+        todasComposicoes.remove(obra);
     }
 
     public long count(Filtro<Obra> filter) {
-        return todasObras.stream()
+        return todasComposicoes.stream()
                 .filter(configuraFiltro(filter).stream()
                         .reduce(Predicate::or).orElse(t -> true))
                 .count();
     }
 
     public Obra encontrarObraId(Integer id) {
-        return todasObras.stream()
+        return todasComposicoes.stream()
                 .filter(c -> c.getIdObra().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new BusinessException("Obra não encontrado com o código " + id));
@@ -164,7 +164,7 @@ public class ObraService implements Serializable {
 
     public void atualizar(Obra obra) {
         validar(obra);
-        todasObras.remove(todasObras.indexOf(obra));
-        todasObras.add(obra);
+        todasComposicoes.remove(todasComposicoes.indexOf(obra));
+        todasComposicoes.add(obra);
     }
 }

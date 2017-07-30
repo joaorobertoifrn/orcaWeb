@@ -15,6 +15,7 @@
 
     </style>
     <ul class="nav navbar-nav">
+         
         <li>
             <h:form prependId="false">
                 <p:menuButton value="Layout" style="margin:10px 10px 0 0 " id="layout-menu">
@@ -23,6 +24,57 @@
                 </p:menuButton>
             </h:form>
         </li>
+        
+        <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-envelope-o"></i>
+                <span class="label label-success">4</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header align-center">You have 4 messages</li>
+                <li>
+                    <ul class="menu">
+                        <li>
+                            Message 1
+                        </li>
+                        <li>
+                            Message 2
+                        </li>
+                        <li>
+                            Message 3
+                        </li>
+                        <li>
+                            Message 4
+                        </li>
+                    </ul>
+                </li>
+                <li class="footer"><a href="#">See all messages</a></li>
+            </ul>
+        </li>
+        <li class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-bell-o"></i>
+                <span class="label label-warning">2</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header align-center">You have 2 notifications.</li>
+                <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                        <li>
+                            Notification 1
+                        </li>
+
+                        <li>
+                            Notification 2
+                        </li>
+                    </ul>
+                </li>
+                <li class="footer"><a href="#">See all notifications</a></li>
+            </ul>
+        </li>
+        
+        
         <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <pe:gravatar id="userImage"
@@ -33,7 +85,7 @@
                 <li class="user-header">
                     <div class="hidden-xs">
                         <pe:gravatar style="border-radius: 50%"
-                                     value="asfpacheco@gmail.com"/>
+                                     value=""/>
                     </div>
                     <p>
                         #{logonMB.usuarioAtual}
@@ -43,7 +95,7 @@
                 <li class="user-footer">
                     <h:form prependId="false">
                         <div class="pull-left">
-                            <p:commandLink styleClass="btn btn-danger" value="Change password"/>
+                            <p:commandLink styleClass="btn btn-danger" value="Alterar senha"/>
                         </div>
                         <div class="pull-right">
                             <p:commandLink id="logout" action="#{logoutMB.doLogout}" title="Logoff">

@@ -140,7 +140,9 @@
 
                         </p:column>
                         
-                         <p:column headerText="URL" sortBy="#{c.url}" filterBy="#{c.url}">
+                         <p:column headerText="URL" 
+                                   sortBy="#{c.url}" 
+                                   filterBy="#{c.url}">
                             <f:facet name="filter">
                                 <p:inputText value="#{baseListaMB.filtro.entidade.url}">
                                     <p:ajax process="@this" update="@none" oncomplete="PF('baseTable').filter()"/>

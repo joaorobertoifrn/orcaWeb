@@ -1,115 +1,103 @@
 package br.edu.ifrn.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Composicao implements Serializable, Comparable<Composicao> {
 
-    private Integer id;
+    private Integer idComposicao;
+    private Base base;             
+    private Especie especie;      // MATERIAL,  MAO_DE_OBRA, EQUIPAMENTOS
+    private Tipo tipo;            // COMPOSICAO, INSUMO  
     private String classe;
-    private String tipo;
     private String descricao;
-    private String unidade;
-    private double coeficiente;
-    private double total;
+    private String unidade;          
+    private double valorUnitario; 
+    
+    private List<ComposicaoItens> itens = new ArrayList<ComposicaoItens>();
 
     public Composicao() {
     }
 
-    public Composicao(Integer id) {
-        this.id = id;
+    public Integer getIdComposicao() {
+        return idComposicao;
     }
 
-    public Integer getId() {
-        return id;
+    public void setIdComposicao(Integer idComposicao) {
+        this.idComposicao = idComposicao;
+    }
+
+    public Base getBase() {
+        return base;
+    }
+
+    public void setBase(Base base) {
+        this.base = base;
+    }
+
+    public Especie getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(Especie especie) {
+        this.especie = especie;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
 
     public String getClasse() {
         return classe;
     }
 
-    public String getTipo() {
-        return tipo;
+    public void setClasse(String classe) {
+        this.classe = classe;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public String getUnidade() {
-        return unidade;
-    }
-
-    public double getCoeficiente() {
-        return coeficiente;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setClasse(String classe) {
-        this.classe = classe;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getUnidade() {
+        return unidade;
     }
 
     public void setUnidade(String unidade) {
         this.unidade = unidade;
     }
 
-    public void setCoeficiente(double coeficiente) {
-        this.coeficiente = coeficiente;
+    public double getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
-//
-    public Composicao classe(String classe) {
-        this.classe = classe;
-        return this;
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
-    public Composicao tipo(String tipo) {
-        this.tipo = tipo;
-        return this;
+    public List<ComposicaoItens> getItens() {
+        return itens;
     }
 
-    public Composicao descricao(String descricao) {
-        this.descricao = descricao;
-        return this;
+    public void setItens(List<ComposicaoItens> itens) {
+        this.itens = itens;
     }
 
-    public Composicao unidade(String unidade) {
-        this.unidade = unidade;
-        return this;
-    }
-
-    public Composicao coeficiente(double coeficiente) {
-        this.coeficiente = coeficiente;
-        return this;
-    }
-
-    public Composicao total(double total) {
-        this.total = total;
-        return this;
-    }
     
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((idComposicao == null) ? 0 : idComposicao.hashCode());
         return result;
     }
 
@@ -122,10 +110,10 @@ public class Composicao implements Serializable, Comparable<Composicao> {
         if (getClass() != obj.getClass())
             return false;
         Composicao other = (Composicao) obj;
-        if (id == null) {
-            if (other.id != null)
+        if (idComposicao == null) {
+            if (other.idComposicao != null)
                 return false;
-        } else if (!id.equals(other.id))
+        } else if (!idComposicao.equals(other.idComposicao))
             return false;
         return true;
     }
@@ -140,6 +128,6 @@ public class Composicao implements Serializable, Comparable<Composicao> {
 
     @Override
     public int compareTo(Composicao o) {
-        return this.id.compareTo(o.getId());
+        return this.idComposicao.compareTo(o.getIdComposicao());
     }
 }

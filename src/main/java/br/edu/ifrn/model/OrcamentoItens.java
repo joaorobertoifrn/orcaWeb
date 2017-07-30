@@ -5,34 +5,37 @@ import java.io.Serializable;
 
 public class OrcamentoItens implements Serializable, Comparable<OrcamentoItens> {
 
-    private Integer idOrcamentoItens;
-    private Integer idOrcamento_FK;
-    private Integer idFase_FK;
-    private String tipoItem;            //  C-Composição  I-Insumo
+    private Integer idOrcaItens;
+    private Orcamento orcamento;
+    private Fase fase;
+    private Tipo tipoItem;             
     private Integer codigoItem;
     private String descricao;
     private String unidade;
-    private String coeficiente;
     private Double quantidade;
     private Double precoUnitario;
-    private Double total;
 
     public OrcamentoItens() {
     }
 
-    public Integer getIdOrcamentoItens() {
-        return idOrcamentoItens;
+    public Double getTotal() {
+        if(quantidade != null && precoUnitario != null);
+	  return quantidade * precoUnitario;  
+    }
+    
+    public Integer getIdOrcaItens() {
+        return idOrcaItens;
     }
 
-    public Integer getIdOrcamento_FK() {
-        return idOrcamento_FK;
+    public Orcamento getOrcamento() {
+        return orcamento;
     }
 
-    public Integer getIdFase_FK() {
-        return idFase_FK;
+    public Fase getFase() {
+        return fase;
     }
 
-    public String getTipoItem() {
+    public Tipo getTipoItem() {
         return tipoItem;
     }
 
@@ -48,10 +51,6 @@ public class OrcamentoItens implements Serializable, Comparable<OrcamentoItens> 
         return unidade;
     }
 
-    public String getCoeficiente() {
-        return coeficiente;
-    }
-
     public Double getQuantidade() {
         return quantidade;
     }
@@ -60,23 +59,19 @@ public class OrcamentoItens implements Serializable, Comparable<OrcamentoItens> 
         return precoUnitario;
     }
 
-    public Double getTotal() {
-        return total;
+    public void setIdOrcaItens(Integer idOrcaItens) {
+        this.idOrcaItens = idOrcaItens;
     }
 
-    public void setIdOrcamentoItens(Integer idOrcamentoItens) {
-        this.idOrcamentoItens = idOrcamentoItens;
+    public void setOrcamento(Orcamento orcamento) {
+        this.orcamento = orcamento;
     }
 
-    public void setIdOrcamento_FK(Integer idOrcamento_FK) {
-        this.idOrcamento_FK = idOrcamento_FK;
+    public void setFase(Fase fase) {
+        this.fase = fase;
     }
 
-    public void setIdFase_FK(Integer idFase_FK) {
-        this.idFase_FK = idFase_FK;
-    }
-
-    public void setTipoItem(String tipoItem) {
+    public void setTipoItem(Tipo tipoItem) {
         this.tipoItem = tipoItem;
     }
 
@@ -92,9 +87,9 @@ public class OrcamentoItens implements Serializable, Comparable<OrcamentoItens> 
         this.unidade = unidade;
     }
 
-    public void setCoeficiente(String coeficiente) {
-        this.coeficiente = coeficiente;
-    }
+    //public void setCoeficiente(Double coeficiente) {
+    //    this.coeficiente = coeficiente;
+    //}
 
     public void setQuantidade(Double quantidade) {
         this.quantidade = quantidade;
@@ -103,68 +98,12 @@ public class OrcamentoItens implements Serializable, Comparable<OrcamentoItens> 
     public void setPrecoUnitario(Double precoUnitario) {
         this.precoUnitario = precoUnitario;
     }
-
-    public void setTotal(Double total) {
-        this.total = total;
-    }
-
-    public OrcamentoItens idOrcamento_FK(Integer idOrcamento_FK) {
-        this.idOrcamento_FK = idOrcamento_FK;
-        return this;
-    }
-
-    public OrcamentoItens idFase_FK(Integer idFase_FK) {
-        this.idFase_FK = idFase_FK;
-        return this;
-    }
-
-    public OrcamentoItens tipoItem(String tipoItem) {
-        this.tipoItem = tipoItem;
-        return this;
-    }
-
-    public OrcamentoItens codigoItem(Integer codigoItem) {
-        this.codigoItem = codigoItem;
-        return this;
-    }
-
-    public OrcamentoItens descricao(String descricao) {
-        this.descricao = descricao;
-        return this;
-    }
-
-    public OrcamentoItens unidade(String unidade) {
-        this.unidade = unidade;
-        return this;
-    }
-
-    public OrcamentoItens coeficiente(String coeficiente) {
-        this.coeficiente = coeficiente;
-        return this;
-    }
-
-    public OrcamentoItens quantidade(Double quantidade) {
-        this.quantidade = quantidade;
-        return this;
-    }
-
-    public OrcamentoItens precoUnitario(Double precoUnitario) {
-        this.precoUnitario = precoUnitario;
-        return this;
-    }
-
-    public OrcamentoItens total(Double total) {
-        this.total = total;
-        return this;
-    }
-    
-      
   
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((idOrcamentoItens == null) ? 0 : idOrcamentoItens.hashCode());
+        result = prime * result + ((idOrcaItens == null) ? 0 : idOrcaItens.hashCode());
         return result;
     }
 
@@ -180,11 +119,11 @@ public class OrcamentoItens implements Serializable, Comparable<OrcamentoItens> 
             return false;
         }
         OrcamentoItens other = (OrcamentoItens) obj;
-        if (idOrcamentoItens == null) {
-            if (other.idOrcamentoItens != null) {
+        if (idOrcaItens == null) {
+            if (other.idOrcaItens != null) {
                 return false;
             }
-        } else if (!idOrcamentoItens.equals(other.idOrcamentoItens)) {
+        } else if (!idOrcaItens.equals(other.idOrcaItens)) {
             return false;
         }
         return true;
@@ -192,6 +131,6 @@ public class OrcamentoItens implements Serializable, Comparable<OrcamentoItens> 
 
     @Override
     public int compareTo(OrcamentoItens o) {
-        return this.idOrcamentoItens.compareTo(o.getIdOrcamentoItens());
+        return this.idOrcaItens.compareTo(o.getIdOrcaItens());
     }
 }

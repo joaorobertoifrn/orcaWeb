@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui" xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:p="http://primefaces.org/ui" 
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
 
      <ul class="sidebar-menu">
         <li>
@@ -32,25 +33,20 @@
                 <span>Obras</span>
             </p:link>
         </li>
-        <li>
-            <p:link href="/cadastros/fase-lista.xhtml">
-                <i class="fa fa-building"></i>
-                <span>Fases</span>
-            </p:link>
-        </li>
+        
         <li class="header">
             Base Preços
         </li>
         <li>
             <p:link href="/cadastros/base-lista.xhtml">
                 <i class="fa fa-database"></i>
-                <span>Sinapi</span>
+                <span>Importar Sinapi</span>
             </p:link>
         </li>
         <li> 
-            <p:link href="/cadastros/base-lista.xhtml?tipo=propria">
+            <p:link href="/cadastros/compo-lista.xhtml?tipo=propria">
                 <i class="fa fa-table"></i>
-                <span>Customizadas</span>
+                <span>Composições</span>
             </p:link>
         </li>
         <li class="header">
@@ -58,19 +54,16 @@
         </li>      
         <li> 
             <p:link href="/cadastros/obra-lista.xhtml">
-                <i class="fa fa-info-circle"></i>
-                <span>Insumos</span>
-            </p:link>
-            <p:link href="/cadastros/obra-lista.xhtml">
-                <i class="fa fa-cubes"></i>
-                <span>Composicoes</span>
-            </p:link>
-            <p:link href="/cadastros/obra-lista.xhtml">
                 <i class="fa fa-users"></i>
-                <span>Usuarios</span>
+                <span>Usuários</span>
             </p:link>
             
-            
+            <li>
+            <p:link href="/cadastros/fase-lista.xhtml">
+                <i class="fa fa-building"></i>
+                <span>Fases</span>
+            </p:link>
+        </li>
         </li> 
     </ul>
 

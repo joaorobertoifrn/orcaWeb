@@ -11,7 +11,7 @@ public class Orcamento implements Serializable, Comparable<Orcamento> {
     private String descricao;
     private double total;
     
-    private List<OrcamentoItens> items; 
+    private List<OrcamentoItens> itens; 
     
     public Orcamento() {
     }
@@ -40,6 +40,10 @@ public class Orcamento implements Serializable, Comparable<Orcamento> {
         return total;
     }
 
+    public List<OrcamentoItens> getOrcamentoItens() {
+	return itens;
+    }
+    
     public void setIdOrcamento(Integer idOrcamento) {
         this.idOrcamento = idOrcamento;
     }
@@ -59,7 +63,11 @@ public class Orcamento implements Serializable, Comparable<Orcamento> {
     public void setTotal(double total) {
         this.total = total;
     }
-
+    
+    public void setItens(List<OrcamentoItens> itens) {
+		this.itens = itens;
+    }
+    
     // usado para criar demo ----------------
     public Orcamento Obra(Obra obra) {
         this.obra = obra;
