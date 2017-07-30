@@ -80,5 +80,10 @@ public class BaseFormMB implements Serializable {
     public boolean isNew() {
         return base == null || base.getIdBase() == null;
     }
+    
+    public void importaSinapi() {
+        String msg = "Base de Preços "+base.getMesAno()+ " importada com sucesso! ";
+        
+    }
 
 }

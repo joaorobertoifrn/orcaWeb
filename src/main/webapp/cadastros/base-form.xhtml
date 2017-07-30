@@ -80,6 +80,7 @@
                                     rendered="#{baseFormMB.isNew()}"
                                     resetValues="true" 
                                     icon="fa fa-refresh"/>
+                        
                         <p:menuitem value="Delete" 
                                     action="#{baseFormMB.remover}" 
                                     process="@this"
@@ -91,7 +92,22 @@
                                        message="Você tem certeza?" 
                                        icon="ui-icon-danger"/>
                         </p:menuitem>
+                        
+                        <p:menuitem value="Importar Base de Preços" 
+                                    action="#{baseFormMB.importaSinapi}" 
+                                    process="@this"
+                                    update="@form" 
+                                    rendered="#{not baseFormMB.isNew()}" 
+                                    icon="fa fa-trash"
+                                 >
+                        
+                            <p:confirm header="Confirmação" 
+                                       message="Você tem certeza?" 
+                                       icon="ui-icon-danger"/>
+                        </p:menuitem>
+                        
                         <p:separator/>
+                        
                         <p:menuitem value="Voltar" 
                                     action="base-lista?faces-redirect=true"
                                     process="@this" 
